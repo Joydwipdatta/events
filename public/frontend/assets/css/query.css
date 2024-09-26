@@ -1,0 +1,413 @@
+/*---------------------------------------------------- Color------------------------- ------------*/
+:root {
+
+    --bg_color: #fff;
+    --text_color: #282828;
+    --black_one: #363636;
+    --primary_color: #ffcc00;
+    --primary_color2: #fc840c;
+    --secondary_color: #FFDE59;
+
+
+}
+
+
+@media (max-width: 800px) {
+
+    .mobileHide {
+        display: none !important;
+    }
+
+    .container {
+        width: 90vw;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    .logo i {
+        font-size: 24px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .navbar {
+        column-gap: 20px;
+    }
+
+    .navbar a {
+        column-gap: 8px;
+        font-size: 12px;
+    }
+
+    .banner {
+
+        height: 70vh;
+    }
+
+    .eventCon h6 {
+        font-size: 16px;
+    }
+
+    .eventCon h2 {
+        font-size: 32px;
+        margin-right: 10%;
+        line-height: 40px;
+        padding: 16px 0 24px;
+    }
+
+    .eventCon a button {
+        font-size: 18px;
+        padding: 8px 36px;
+        column-gap: 8px;
+    }
+
+    .trendingSection {
+        padding-top: 64px;
+    }
+
+    .sectionTitle {
+        padding-bottom: 1.5rem;
+    }
+
+    .sectionTitle h3 {
+        font-size: 26px;
+    }
+
+    .sectionTitle .line {
+        width: 30px;
+        margin: 9px 0 10px;
+    }
+
+    .eventBox img {
+        height: 260px;
+    }
+
+    .categorySection {
+        padding: 120px 0 64px;
+    }
+
+    .advertisementArea {
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
+
+    .advertisementArea img {
+        border-radius: 6px;
+    }
+
+    .categoryGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .categoryGrid .category {
+        height: 80px;
+        border-radius: 6px;
+        display: flex;
+        row-gap: 8px;
+    }
+
+    .categoryGrid .category img {
+        height: 30px;
+    }
+
+    .categoryGrid .category p {
+        font-size: 13px;
+        margin: 0 10px;
+    }
+
+    .eventTabsSection .tab {
+        column-gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .eventGrid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .eventTabsSection {
+        padding: 64px 0;
+    }
+
+    .achivementSec {
+        height: 25vh;
+    }
+
+    .achievementFlex {
+        column-gap: 10px;
+        justify-content: space-between;
+    }
+
+    .achievementFlex .achievement h2 {
+        font-size: 24px;
+    }
+
+    .achievementFlex .achievement h4 {
+        font-size: 13px;
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 40px;
+        column-gap: 20px;
+    }
+
+    .featureSection {
+        padding: 64px 0;
+    }
+
+    .featureSection h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .featureCon i {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .featureCon h3 {
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin: 10px 0 4px;
+        padding-left: 6px;
+    }
+
+    .featureCon p {
+        font-size: 12px;
+        padding-left: 6px;
+        margin: 0 5%;
+    }
+
+    .footerTop p {
+        font-size: 12px;
+    }
+
+    .footerTop h3 {
+        font-size: 18px;
+        margin: 24px 0 6px 0;
+    }
+
+    .footerMenu {
+        margin: 24px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 10px;
+    }
+
+    .footerMenu a {
+        font-size: 15px;
+
+    }
+
+    .footerSocial a {
+        font-size: 24px;
+    }
+
+    .footerBottomFlex {
+        flex-direction: column;
+        padding: 20px 0;
+        row-gap: 10px;
+    }
+
+    .footerBottomFlex p {
+        font-size: 11px;
+    }
+
+    .fullEventGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .fullEventGrid .bannerSlider {
+        height: 200px;
+    }
+
+    .fullEventGrid .bannerSlider .fullEventImage img {
+        height: 200px;
+    }
+
+    .fullEventLeft {
+        grid-row: 2;
+    }
+
+    .fullEventRight {
+        grid-row: 1;
+    }
+
+    .basicPage {
+        padding: 80px 0;
+    }
+
+    .loginRegisterBox {
+        width: calc(90vw - 40px);
+        padding: 30px 20px;
+    }
+
+    .profileMenu {
+        font-size: 11px;
+        font-weight: 400;
+        column-gap: 4px;
+    }
+
+    .profileMenu .fa-user {
+        height: 15px;
+        width: 15px;
+        font-size: 10px;
+    }
+
+    .profileMenu-content {
+        padding-top: 0px;
+        min-width: 160px;
+    }
+
+    .eventGrop {
+        border-radius: 6px;
+        padding: 0;
+        margin-bottom: 20px;
+        border: none;
+    }
+
+    .inputGroup {
+        margin-bottom: 16px;
+    }
+
+    .eventGrop h2 {
+        font-size: 22px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .thumbnailCon {
+        height: 150px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    #imageUploadContainer {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .fileUploadCon {
+        height: 80px;
+        border-radius: 8px;
+    }
+
+    .dateItimeGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .locationType {
+        column-gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .vanueCon .vanueConGrid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .switch span {
+        font-size: 14px;
+    }
+
+    .createEventFooter {
+        column-gap: 8px;
+        margin-top: 20px;
+    }
+
+    .createEventFooter .submit {
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 8px 24px;
+    }
+
+    .createEventFooter a {
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 8px 24px;
+    }
+
+    .manageEventTable tr {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: left;
+        padding: 16px 0;
+    }
+
+    .eventConRow {
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: start;
+    }
+
+    .manageEventTable thead {
+        display: none;
+    }
+
+    .eventConRow h5 {
+        font-size: 16px;
+    }
+
+    .ManageEventTabButtons {
+        display: flex;
+        flex-direction: column-reverse;
+        row-gap: 20px;
+        margin-bottom: 20px;
+        align-items: start;
+    }
+
+    .eventConRow img {
+        height: 160px;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .aboutHeroSection{
+        height: 70vh;
+    }
+    .aboutHeroPattern{
+        height: 70vh;
+    }
+
+    .aboutHeroSection h6 {
+        font-size: 14px;
+    }
+
+    .aboutHeroSection h2 {
+        font-size: 40px;
+        margin-right: 20%;
+        line-height: 60px;
+        padding: 10px 0 12px;
+        color: var(--bg_color);
+    }
+
+    .aboutHeroSection p {
+        font-size: 14px;
+        margin-bottom: 16px;
+        margin-right: 20%;
+    }
+    .contactGrid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+}
