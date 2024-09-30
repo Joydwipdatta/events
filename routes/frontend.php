@@ -18,9 +18,20 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::controller(Frontendcontroller::class)->group(function () {
         // Route::get('/user_Dashboard', 'userDashboard')->name('user.dashboard');
         Route::get('/create-event', 'createEvent');
-        Route::get('/event-details/{event_id}', 'eventDetails');
+        // Route::get('/event-details/{event_id}', 'eventDetails');
         Route::post('/store-event', 'storeEventForm')->name('frontend.addevent');
         Route::get('/edit-event/{event_id}', 'editEvent');
         Route::delete('/delete-event-image/{id}',  'deleteEventImage');
+        Route::post('/update-event', 'updateEventForm')->name('frontend.updateEvent');
+        Route::get('/all-events', function () {
+            return view('frontend.dashboard.all_events');
+        });
     });
+});
+Route::get('/event-details/{event_id}', [Frontendcontroller::class, 'eventDetails']);
+Route::get('/aboutus', function () {
+    return view('frontend.aboutus');
+});
+Route::get('/all-events', function () {
+    return view('frontend.dashboard.all_events');
 });

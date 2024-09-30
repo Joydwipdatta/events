@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('event_description');
             $table->string('event_thumbnail_image')->nullable();
             $table->string('event_location');
-            $table->timestamps('event_date');
+            $table->string('event_date');
             $table->string('event_start_time');
             $table->string('event_end_time');
             $table->string('event_venue')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('event_ticket_cost', '40')->nullable();
             $table->string('event_slot_no')->nullable();
             $table->string('event_freepass_no')->nullable();
-            $table->string('event_ticket_type')->default('paid');
+            $table->string('event_ticket_type');
             $table->string('event_admin_status')->default(0);
             $table->tinyInteger('is_approve')->default(0);
             $table->tinyInteger('is_featured')->default(0);

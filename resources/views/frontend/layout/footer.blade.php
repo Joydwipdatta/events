@@ -18,8 +18,8 @@
                  can help you build a community of not just ticket buyers, but also fans.
              </p>
              <div class="footerMenu">
-                 <a href="about.html">About Us</a>
-                 <a href="events.html">All Events</a>
+                 <a href="/aboutus">About Us</a>
+                 <a href="/all-events">All Events</a>
                  <a href="#">PRIVACY POLICY</a>
                  <a href="#">TERMS & CONDITIONS</a>
                  <a href="contact.html">Contact Us</a>

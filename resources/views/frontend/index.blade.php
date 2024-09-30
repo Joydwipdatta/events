@@ -10,11 +10,11 @@
 
     <section class="conSection categorySection">
         <div class="container">
-            <div class="advertisementArea slideTopRevel">
+            {{-- <div class="advertisementArea slideTopRevel">
                 <a href="footbal_event_details.html" class="">
                     <img src="{{ asset('frontend/assets/image/event/football_ads2.png') }}" alt="">
                 </a>
-            </div>
+            </div> --}}
             <div class="sectionTitle">
                 <h3 class="">Event Categories</h3>
                 <div class="line slideTopRevel"></div>
@@ -81,23 +81,55 @@
                     <button class="tablinks" onclick="openCity(event, 'Free')">Free</button>
                     <button class="tablinks" onclick="openCity(event, 'Paid')">Paid</button>
                 </div>
+                @php
+                    $allEvents = getAllEvents();
+
+                    // Fetch events where 'created_at' is between today and one week from now
+
+                @endphp
 
                 <div id="All" class="tabcontent">
-                    <div class="eventGrid">
 
-                        <a href="footbal_event_details.html">
-                            <div class="eventBox">
-                                <img src="{{ asset('frontend/assets/image/event/football_league_2024/football1.jpg') }}"
-                                    alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">Tripura Football Association</span>
-                                    <h2>"B" Division Football League-2024-25</h2>
-                                    <h6>UK Academy Mini Stadium</h6>
-                                    <h6>19-07-2024 to 16-08-2024</h6>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
+                    @if ($allEvents->isEmpty())
+                        <div class="emptyCategory">
+                            <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
+                            <h4>No events in this Category</h4>
+                            <p>Try a different Category</p>
+                        </div>
+                    @else
+                        <div class="eventGrid">
+                            @foreach ($allEvents as $allEvent)
+                                <a href="{{ '/event-details/' . encryptId($allEvent->id) }}">
+                                    <div class="eventBox">
+                                        <img src="{{ Storage::url($allEvent->event_thumbnail_image) }}" alt="">
+                                        <div class="eventBoxCon">
+                                            <span class="pill">{{ getUserName($allEvent->user_id) }}</span>
+                                            <h2>{{ $allEvent->event_title }}</h2>
+                                            @if ($allEvent->event_location == 'Venue')
+                                                <h6>{{ $allEvent->event_venue }}</h6>
+                                                <h6>{{ $allEvent->event_venue_name }}</h6>
+                                                <h6>{{ $allEvent->event_date }} ,{{ $allEvent->event_start_time }}
+                                                    -{{ $allEvent->event_end_time }}</h6>
+                                            @elseif ($allEvent->event_location == 'Online Event')
+                                                <h6>
+                                                    Online Url: {{ $allEvent->event_online_link }}
+                                                </h6>
+                                            @else
+                                                Venue Not Updated
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                        @if (count($allEvents) > 0)
+                            <a href="/all-events" class="viewLink slideTopRevel">View All Events</a>
+                        @endif
+                    @endif
+
+
+
+                    {{-- <a href="#">
                             <div class="eventBox">
                                 <img src="{{ asset('frontend/assets/image/event/1.jpg') }}" alt="">
                                 <div class="eventBoxCon">
@@ -118,119 +150,217 @@
                                     <h6>Free</h6>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <a href="events.html" class="viewLink slideTopRevel">View All Events</a>
+                        </a> --}}
                 </div>
-                <div id="Week" class="tabcontent">
 
-                    <!-- If No Data  -->
+                {{-- <a href="events.html" class="viewLink slideTopRevel">View All Events</a> --}}
+            </div>
+
+            @php
+
+                $EventsWeek = getWeekEvents();
+
+            @endphp
+            <div id="Week" class="tabcontent">
+
+                @if ($EventsWeek->isEmpty())
                     <div class="emptyCategory">
                         <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
                         <h4>No events in this Category</h4>
                         <p>Try a different Category</p>
                     </div>
-                    <!-- If No Data  -->
+                @else
+                    <div class="eventGrid">
+                        @foreach ($EventsWeek as $weekEvent)
+                            <a href="{{ '/event-details/' . encryptId($weekEvent->id) }}">
+                                <div class="eventBox">
+                                    <img src="{{ Storage::url($weekEvent->event_thumbnail_image) }}" alt="">
+                                    <div class="eventBoxCon">
+                                        <span class="pill">{{ getUserName($weekEvent->user_id) }}</span>
+                                        <h2>{{ $weekEvent->event_title }}</h2>
+                                        @if ($weekEvent->event_location == 'Venue')
+                                            <h6>{{ $allEvent->venue_name }}</h6>
+                                            <h6>{{ $allEvent->event_date }}</h6>
+                                        @elseif ($weekEvent->event_location == 'Online Event')
+                                            <h6>
+                                                Online Url: {{ $weekEvent->event_online_link }}
+                                            </h6>
+                                        @else
+                                            Venue Not Updated
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                    @if (count($EventsWeek) > 0)
+                        <a href="/all-events" class="viewLink slideTopRevel">View All Events</a>
+                    @endif
+                @endif
+            </div>
 
-                </div>
-                <div id="Online" class="tabcontent">
 
-                    <!-- If No Data  -->
+            @php
+                $onlineEvent = getOnlineEvents();
+            @endphp
+            <div id="Online" class="tabcontent">
+                @if ($onlineEvent->isEmpty())
                     <div class="emptyCategory">
                         <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
                         <h4>No events in this Category</h4>
                         <p>Try a different Category</p>
                     </div>
-                    <!-- If No Data  -->
-
-                </div>
-                <div id="Offline" class="tabcontent">
+                @else
                     <div class="eventGrid">
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/1.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>From $20.00</h6>
+                        @foreach ($onlineEvent as $online)
+                            <a href="{{ '/event-details/' . encryptId($online->id) }}">
+                                <div class="eventBox">
+                                    <img src="{{ Storage::url($online->event_thumbnail_image) }}" alt="">
+                                    <div class="eventBoxCon">
+                                        <span class="pill">{{ getUserName($online->user_id) }}</span>
+                                        <h2>{{ $online->event_title }}</h2>
+                                        {{-- @if ($online->event_location == 'Venue')
+                                            <h6>{{ $allEvent->venue_name }}</h6>
+                                            <h6>{{ $allEvent->event_date }}</h6> --}}
+                                        @if ($online->event_location == 'Online Event')
+                                            <h6>
+                                                Online Url: {{ $online->event_online_link }}
+                                            </h6>
+                                        @else
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/2.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>Free</h6>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/3.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>From $20.00</h6>
-                                </div>
-                            </div>
-                        </a>
-
+                            </a>
+                        @endforeach
                     </div>
-                </div>
+                    @if (count($onlineEvent) > 0)
+                        <a href="/all-events" class="viewLink slideTopRevel">View All Events</a>
+                    @endif
+                @endif
+                <!-- If No Data  -->
 
+                <!-- If No Data  -->
+            </div>
 
-                <div id="Free" class="tabcontent">
+            @php
+                $offlineEvents = getOfflineEvents();
+            @endphp
+            <div id="Offline" class="tabcontent">
+                @if ($offlineEvents->isEmpty())
+                    <div class="emptyCategory">
+                        <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
+                        <h4>No events in this Category</h4>
+                        <p>Try a different Category</p>
+                    </div>
+                @else
                     <div class="eventGrid">
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/1.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>From $20.00</h6>
+                        @foreach ($offlineEvents as $offline)
+                            <a href="{{ '/event-details/' . encryptId($offline->id) }}">
+                                <div class="eventBox">
+                                    <img src="{{ Storage::url($offline->event_thumbnail_image) }}" alt="">
+                                    <div class="eventBoxCon">
+                                        <span class="pill">{{ getUserName($offline->user_id) }}</span>
+                                        <h2>{{ $offline->event_title }}</h2>
+                                        @if ($offline->event_location == 'Venue')
+                                            <h6>{{ $offline->event_venue }}</h6>
+                                            <h6>{{ $offline->event_venue_name }}</h6>
+                                            <h6>{{ $offline->event_date }} ,{{ $offline->event_start_time }}
+                                                -{{ $offline->event_end_time }}</h6>
+                                            {{-- @if ($offline->event_location == 'Online Event')
+                                            <h6>
+                                                Online Url: {{ $offline->event_online_link }}
+                                            </h6> --}}
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/2.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>Free</h6>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="eventBox ">
-                                <img src="{{ asset('frontend/assets/image/event/3.jpg') }}" alt="">
-                                <div class="eventBoxCon">
-                                    <span class="pill">TW Department</span>
-                                    <h2>James Dain's Fiction Writing Playground</h2>
-                                    <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                    <h6>From $20.00</h6>
-                                </div>
-                            </div>
-                        </a>
-
+                            </a>
+                        @endforeach
                     </div>
-                </div>
+                    @if (count($offlineEvents) > 0)
+                        <a href="/all-events" class="viewLink slideTopRevel">View All Events</a>
+                    @endif
+                @endif
+            </div>
+            @php
+                $freeEvents = getFreeEvents();
+            @endphp
+
+
+            <div id="Free" class="tabcontent">
+                @if ($freeEvents->isEmpty())
+                    <div class="emptyCategory">
+                        <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
+                        <h4>No events in this Category</h4>
+                        <p>Try a different Category</p>
+                    </div>
+                @else
+                    <div class="eventGrid">
+                        @foreach ($freeEvents as $free)
+                            <a href="{{ '/event-details/' . encryptId($weekEvent->id) }}">
+                                <div class="eventBox">
+                                    <img src="{{ Storage::url($free->event_thumbnail_image) }}" alt="">
+                                    <div class="eventBoxCon">
+                                        <span class="pill">{{ getUserName($free->user_id) }}</span>
+                                        <h2>{{ $free->event_title }}</h2>
+                                        @if ($free->event_location == 'Venue')
+                                            <h6>{{ $free->event_venue }}</h6>
+                                            <h6>{{ $free->event_venue_name }}</h6>
+                                            <h6>{{ $free->event_date }} ,{{ $free->event_start_time }}
+                                                -{{ $free->event_end_time }}</h6>
+                                        @elseif ($free->event_location == 'Online Event')
+                                            <h6>
+                                                Online Url: {{ $free->event_online_link }}
+                                            </h6>
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                    @if (count($freeEvents) > 0)
+                        <a href="" class="viewLink slideTopRevel">View All Events</a>
+                    @endif
+                @endif
+
+                @php
+                    $paidEvent = getPaidEvents();
+                @endphp
                 <div id="Paid" class="tabcontent">
 
-                    <!-- If No Data  -->
-                    <div class="emptyCategory">
-                        <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
-                        <h4>No events in this Category</h4>
-                        <p>Try a different Category</p>
-                    </div>
-                    <!-- If No Data  -->
+                    @if ($paidEvent->isEmpty())
+                        <div class="emptyCategory">
+                            <img src="{{ asset('frontend/assets/image/calendar.png') }}" alt="">
+                            <h4>No events in this Category</h4>
+                            <p>Try a different Category</p>
+                        </div>
+                    @else
+                        <div class="eventGrid">
+                            @foreach ($paidEvent as $paid)
+                                <a href="{{ '/event-details/' . encryptId($paid->id) }}">
+                                    <div class="eventBox">
+                                        <img src="{{ Storage::url($paid->event_thumbnail_image) }}" alt="">
+                                        <div class="eventBoxCon">
+                                            <span class="pill">{{ getUserName($paid->user_id) }}</span>
+                                            <h2>{{ $paid->event_title }}</h2>
+                                            @if ($paid->event_location == 'Venue')
+                                                <h6>{{ $paid->event_venue }}</h6>
+                                                <h6>{{ $paid->event_venue_name }}</h6>
+                                                <h6>{{ $paid->event_date }} ,{{ $paid->event_start_time }}
+                                                    -{{ $paid->event_end_time }}</h6>
+                                            @elseif ($paid->event_location == 'Online Event')
+                                                <h6>
+                                                    Online Url: {{ $paid->event_online_link }}
+                                                </h6>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                        @if (count($paidEvent) > 0)
+                            <a href="/all-events" class="viewLink slideTopRevel">View All Events</a>
+                        @endif
+                    @endif
 
                 </div>
             </div>
@@ -251,15 +381,16 @@
         <div class="container">
             <div class="achievementFlex">
                 <div class="achievement">
-                    <h2><span class="counter" data-target="833">0</span> +</h2>
+                    <h2><span class="counter" data-target="{{ getTotalCount() }}">0</span> +</h2>
                     <h4>Total Events</h4>
                 </div>
+
                 <div class="achievement">
-                    <h2><span class="counter" data-target="174">0</span> +</h2>
+                    <h2><span class="counter" data-target="{{ getUpcomingEventCount() }}">0</span> +</h2>
                     <h4>Upcoming Events</h4>
                 </div>
                 <div class="achievement">
-                    <h2><span class="counter" data-target="133">0</span> +</h2>
+                    <h2><span class="counter" data-target="{{ getEventPartneredCount() }}">0</span> +</h2>
                     <h4>Events Partnered</h4>
                 </div>
             </div>
