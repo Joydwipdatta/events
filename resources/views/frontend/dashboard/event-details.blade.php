@@ -8,15 +8,15 @@
                         <div class="bannerSlider">
                             <div class="slider-wrapper">
 
-                                @foreach ($getEventDetails as $eventDetails)
-                                    <div class="banner">
-                                        <div class="fullEventImage">
-                                            <img src="{{ asset('storage/' . $eventDetails->event_thumbanail_image) }}"
-                                                alt="">
-                                        </div>
+
+                                <div class="banner">
+                                    <div class="fullEventImage">
+                                        <img src="{{ Storage::url($getEventDetails->event_thumbnail_image) }}"
+                                            alt="">
 
                                     </div>
-                                @endforeach
+                                </div>
+
                                 {{-- <div class="banner">
                                     <div class="fullEventImage">
                                         <img src="assets/image/event/2.jpg" alt="">
@@ -35,26 +35,37 @@
                         </div>
                         <h3>About this event</h3>
                         <p>
+
+                            {{ $getEventDetails->event_description }}
+
                         </p>
-                        {{-- <p>It is a long established fact that a reader will be distracted by the readable content of a --}}
-                        page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                        more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                        here', making it look like readable English. Many desktop publishing packages and web page
-                        editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
-                        uncover many web sites still in their infancy. Various versions have evolved over the years,
-                        sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                     </div>
 
                     <div class="fullEventRight">
                         <div class="fullEventInfo">
-                            <span class="pill">TW Department</span>
-                            <h2>Monsoon Online Singing Competition 2024</h2>
-                            <p><i class="fa-regular fa-bookmark"></i>Music</p>
-                            <p><i class="fa-regular fa-calendar"></i>June 16 | 3:14PM - July 20 | 9:14PM</p>
-                            <p><i class="fa-regular fa-compass"></i></i>Online</p>
+                            <span class="pill">{{ getUserName($getEventDetails->user_id) }}</span>
+                            <h2>{{ $getEventDetails->event_title }}</h2>
+                            <p><i class="fa-regular fa-bookmark"></i>{{ $getEventDetails->event_title }}</p>
+                            <p><i class="fa-regular fa-calendar"></i>{{ $getEventDetails->event_date }} |
+                                {{ $getEventDetails->event_start_time }} - {{ $getEventDetails->event_end_time }} </p>
+                            @if ($getEventDetails->event_location == 'Online Event')
+                                <p><i class="fa-regular fa-compass"></i></i>Link:{{ $getEventDetails->event_online_link }}
+                                </p>
+                            @elseif ($getEventDetails->event_location == 'Venue')
+                                <p><i class="fa-regular fa-compass"></i></i>Location:{{ $getEventDetails->event_venue }}
+                                    , {{ $getEventDetails->event_venue_name }}
+                                </p>
+                            @else
+                                <p><i class="fa-regular fa-compass"></i></i>No Event Venue Updated
+                                </p>
+                            @endif
                             <div class="fullEventPrice">
-                                <h3>₹333 onwards</h3>
-                                <a href="#">Ticket</a>
+                                @if ($getEventDetails->event_ticket_type === 'Free')
+                                    <h3>Free Entry</h3>
+                                @else
+                                    <h3>{{ $getEventDetails->event_ticket_cost }}</h3>
+                                    <a href="#">Ticket</a>
+                                @endif
                             </div>
                         </div>
                         <div class="adsCon">
@@ -74,22 +85,27 @@
                 <div class="slide-container swiper">
                     <div class="slide-content-event">
                         <div class="card-wrapper swiper-wrapper">
-                            <div class="card swiper-slide">
-                                <a href="#">
-                                    <div class="eventBox">
-                                        <img src="assets/image/event/1.jpg" alt="">
-                                        <div class="eventBoxCon">
-                                            <span class="pill">TW Department</span>
-                                            <h2>James Dain's Fiction Writing Playground</h2>
-                                            <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                            <h6>From $20.00</h6>
+                            @foreach ($getApprovedEvents as $approved)
+                                <div class="card swiper-slide">
+                                    <a href="{{ '/event-details/' . encryptId($approved->id) }}">
+                                        <div class="eventBox">
+                                            <img src="{{ Storage::url($approved->event_thumbnail_image) }}" alt="">
+                                            <div class="eventBoxCon">
+                                                <span class="pill">{{ getUserName($approved->user_id) }}</span>
+                                                <h2>{{ $approved->event_title }}</h2>
+                                                <h6>{{ $approved->event_date }}•
+                                                    {{ $approved->event_start_time }}</h6>
+                                                @if ($approved->event_ticket_type == 'Free')
+                                                    <h6>Free</h6>
+                                                @else
+                                                    <h6>{{ $approved->event_ticket_cost }}</h6>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-
-
-                            </div>
-                            <div class="card swiper-slide">
+                                    </a>
+                                </div>
+                            @endforeach
+                            {{-- <div class="card swiper-slide">
                                 <a href="#">
                                     <div class="eventBox">
                                         <img src="assets/image/event/2.jpg" alt="">
@@ -158,7 +174,7 @@
                                     </div>
                                 </a>
 
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

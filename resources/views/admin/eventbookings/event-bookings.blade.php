@@ -21,8 +21,8 @@
                                         <th>Date</th>
                                         <th>Ticket types</th>
                                         <th>Event Times</th>
-                                        <th>Feature Event</th>
-                                        <th>Status</th>
+                                        <th>Approve Event</th>
+                                        <th>Feature Status</th>
                                         <th>Operations</th>
                                     </tr>
                                 </thead>

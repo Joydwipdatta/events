@@ -14,12 +14,13 @@
          <div class="slide-container swiper">
              <div class="slide-content-event">
                  <div class="card-wrapper swiper-wrapper">
+
+
                      @foreach ($trendingContent as $trending)
                          <div class="card swiper-slide">
-                             <a href="footbal_event_details.html">
+                             <a href="{{ '/event-details/' . encryptId($trending->id) }}">
                                  <div class="eventBox">
-                                     <img src="{{ asset('fronted/assets/image/event/football_league_2024/football1.jpg') }}"
-                                         alt="">
+                                     <img src="{{ Storage::url($trending->event_thumbnail_image) }}" alt="">
                                      <div class="eventBoxCon">
                                          <span class="pill">{{ getUserName($trending->user_id) }}</span>
                                          <h2>{{ $trending->event_title }}</h2>
@@ -41,89 +42,10 @@
                          </div>
                      @endforeach
 
-                     {{-- <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/1.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>From $20.00</h6>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/2.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>Free</h6>
-                                    </div>
-                                </div>
-                            </a>
 
-                        </div>
-                        <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/3.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>From $20.00</h6>
-                                    </div>
-                                </div>
-                            </a>
 
-                        </div>
-                        <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/1.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>From $20.00</h6>
-                                    </div>
-                                </div>
-                            </a>
 
-                        </div>
-                        <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/1.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>From $20.00</h6>
-                                    </div>
-                                </div>
-                            </a>
 
-                        </div>
-                        <div class="card swiper-slide">
-                            <a href="event-details.html">
-                                <div class="eventBox">
-                                    <img src="{{ asset('fronted/assets/image/event/1.jpg') }}" alt="">
-                                    <div class="eventBoxCon">
-                                        <span class="pill">TW Department</span>
-                                        <h2>James Dain's Fiction Writing Playground</h2>
-                                        <h6>Thu, Jul 25 • 9:00 AM GMT+5:30</h6>
-                                        <h6>Free</h6>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div> --}}
 
                  </div>
              </div>
@@ -131,46 +53,6 @@
              <div class="swiper-button-next swiper-navBtn"></div>
              <div class="swiper-button-prev swiper-navBtn"></div>
          </div>
-
-         <!-- <br><br><br>
-
-                                    <div class="slide-container swiper">
-                                        <div class="slide-content-event">
-                                            <div class="card-wrapper swiper-wrapper">
-                                                <div class="card swiper-slide">
-                                                    <div class="eventBox">
-                                                        1
-                                                    </div>
-
-                                                </div>
-                                                <div class="card swiper-slide">
-                                                    <div class="eventBox">
-                                                        2
-                                                    </div>
-                                                </div>
-                                                <div class="card swiper-slide">
-                                                    <div class="eventBox">
-                                                        3
-                                                    </div>
-                                                </div>
-                                                <div class="card swiper-slide">
-                                                    <div class="eventBox">
-                                                        4
-                                                    </div>
-                                                </div>
-                                                <div class="card swiper-slide">
-                                                    <div class="eventBox">
-                                                        5
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-                                        <div class="swiper-button-next swiper-navBtn"></div>
-                                        <div class="swiper-button-prev swiper-navBtn"></div>
-                                    </div> -->
 
      </div>
  </section>

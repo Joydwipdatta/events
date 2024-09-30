@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admincontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\Usercontroller;
@@ -12,6 +13,10 @@ Route::get('/admin/dashboard', function () {
     return view('admin.admin_index');
 })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created successfully!';
+});
 
 Route::get('/admin-login', function () {
     return view('admin.admin-login');
@@ -45,6 +50,12 @@ Route::middleware(['auth', 'isAdmin'])->group(
                 Route::get('/admmin/view/event-booking/{id}', 'viewEvents');
                 Route::get('/event/approve/{id}', 'eventIsApproved');
                 Route::get('/event/featured/{id}',  'eventIsFeatured')->name('event.isFeatured');
+                Route::get('/add-advertisement', function () {
+                    return view('admin.advertisement.advertise');
+                });
+                Route::post('/store/advertisement', 'addAdvertisement')->name('admin.addAdvertisement');
+                Route::get('/ad-delete/{adid}', 'deleteADs');
+                Route::get('/view/advertisement/{id}', 'addisFeatured');
             }
         );
     }

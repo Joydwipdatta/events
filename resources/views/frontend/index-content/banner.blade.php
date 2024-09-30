@@ -29,7 +29,8 @@
                                             location Not define
                                         @endif
                                     </h2>
-                                    <a href="footbal_event_details.html"><button><i class="fa-solid fa-caret-right"></i>
+                                    <a href="{{ '/event-details/' . encryptId($eventBanner->id) }}"><button><i
+                                                class="fa-solid fa-caret-right"></i>
                                             Explore</button></a>
                                 </div>
 

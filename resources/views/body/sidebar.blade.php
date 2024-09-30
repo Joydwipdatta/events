@@ -24,20 +24,13 @@
                             <span>Event Bookings</span>
                         </a>
                     </li>
-                    {{--
 
                     <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="ri-map-pin-line"></i>
-                            <span>Maps</span>
+                        <a href=" /add-advertisement" class=" waves-effect">
+                            <i class="ri-calendar-2-line"></i>
+                            <span>Add Advertisement</span>
                         </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="maps-google.html">Google Maps</a></li>
-                            <li><a href="maps-vector.html">Vector Maps</a></li>
-                        </ul>
-                    </li> --}}
-
-
+                    </li>
 
                 </ul>
             </div>

@@ -8,9 +8,12 @@
                     <div class="line"></div>
                     <p class="">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod</p>
                 </div>
-                <form action="" class="createEventForm" method="post" enctype="multipart/form-data">
+                <form action="{{ route('frontend.updateEvent') }}" class="createEventForm" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ encryptId(Auth::user()->id) }}">
+                    <input type="hidden" name="id" value="{{ $eventDetails->id }}">
+
                     <div class="eventGrop">
 
                         <h2>Event Overview</h2>
@@ -98,7 +101,7 @@
 
                                                 <!-- Display the existing image -->
                                                 <img id="imagePreview" class="imagePreview"
-                                                    src="{{ asset('storage/' . $eventGallery->file_path) }}"
+                                                    src="{{ Storage::url($eventGallery->event_gallery_image) }}"
                                                     alt="Image Preview" style="display: block;">
 
                                                 <!-- Remove button to delete the existing image -->
